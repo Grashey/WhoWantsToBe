@@ -8,7 +8,13 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class MainScreenController: UIViewController {
+    
+    @IBAction func newGame(_ sender: UIButton) {
+    }
+    @IBAction func records(_ sender: UIButton) {
+    }
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
