@@ -9,21 +9,27 @@
 /* Begin PBXBuildFile section */
 		B6FCAF182396904300C3F48D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FCAF172396904300C3F48D /* AppDelegate.swift */; };
 		B6FCAF1A2396904300C3F48D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FCAF192396904300C3F48D /* SceneDelegate.swift */; };
-		B6FCAF1C2396904300C3F48D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FCAF1B2396904300C3F48D /* ViewController.swift */; };
+		B6FCAF1C2396904300C3F48D /* MainScreenController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FCAF1B2396904300C3F48D /* MainScreenController.swift */; };
 		B6FCAF1F2396904300C3F48D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B6FCAF1D2396904300C3F48D /* Main.storyboard */; };
 		B6FCAF212396904800C3F48D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B6FCAF202396904800C3F48D /* Assets.xcassets */; };
 		B6FCAF242396904800C3F48D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B6FCAF222396904800C3F48D /* LaunchScreen.storyboard */; };
+		B6FCAF2C2396A46A00C3F48D /* RecordsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FCAF2B2396A46A00C3F48D /* RecordsController.swift */; };
+		B6FCAF2F2397C66A00C3F48D /* GameSceneController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FCAF2E2397C66A00C3F48D /* GameSceneController.swift */; };
+		B6FCAF332398068E00C3F48D /* QuestionsBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FCAF322398068E00C3F48D /* QuestionsBase.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		B6FCAF142396904300C3F48D /* WhoWantsToBe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WhoWantsToBe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6FCAF172396904300C3F48D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B6FCAF192396904300C3F48D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		B6FCAF1B2396904300C3F48D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		B6FCAF1B2396904300C3F48D /* MainScreenController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenController.swift; sourceTree = "<group>"; };
 		B6FCAF1E2396904300C3F48D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B6FCAF202396904800C3F48D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B6FCAF232396904800C3F48D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B6FCAF252396904800C3F48D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B6FCAF2B2396A46A00C3F48D /* RecordsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordsController.swift; sourceTree = "<group>"; };
+		B6FCAF2E2397C66A00C3F48D /* GameSceneController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSceneController.swift; sourceTree = "<group>"; };
+		B6FCAF322398068E00C3F48D /* QuestionsBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionsBase.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,13 +64,24 @@
 			children = (
 				B6FCAF172396904300C3F48D /* AppDelegate.swift */,
 				B6FCAF192396904300C3F48D /* SceneDelegate.swift */,
-				B6FCAF1B2396904300C3F48D /* ViewController.swift */,
+				B6FCAF322398068E00C3F48D /* QuestionsBase.swift */,
+				B6FCAF2D2396A47F00C3F48D /* Controllers */,
 				B6FCAF1D2396904300C3F48D /* Main.storyboard */,
 				B6FCAF202396904800C3F48D /* Assets.xcassets */,
 				B6FCAF222396904800C3F48D /* LaunchScreen.storyboard */,
 				B6FCAF252396904800C3F48D /* Info.plist */,
 			);
 			path = WhoWantsToBe;
+			sourceTree = "<group>";
+		};
+		B6FCAF2D2396A47F00C3F48D /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				B6FCAF1B2396904300C3F48D /* MainScreenController.swift */,
+				B6FCAF2B2396A46A00C3F48D /* RecordsController.swift */,
+				B6FCAF2E2397C66A00C3F48D /* GameSceneController.swift */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,9 +155,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B6FCAF1C2396904300C3F48D /* ViewController.swift in Sources */,
+				B6FCAF332398068E00C3F48D /* QuestionsBase.swift in Sources */,
+				B6FCAF2C2396A46A00C3F48D /* RecordsController.swift in Sources */,
+				B6FCAF1C2396904300C3F48D /* MainScreenController.swift in Sources */,
 				B6FCAF182396904300C3F48D /* AppDelegate.swift in Sources */,
 				B6FCAF1A2396904300C3F48D /* SceneDelegate.swift in Sources */,
+				B6FCAF2F2397C66A00C3F48D /* GameSceneController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -287,6 +307,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 77NB29ZK26;
 				INFOPLIST_FILE = WhoWantsToBe/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -294,7 +315,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = Swift.WhoWantsToBe;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -305,6 +326,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 77NB29ZK26;
 				INFOPLIST_FILE = WhoWantsToBe/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -312,7 +334,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = Swift.WhoWantsToBe;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

@@ -11,10 +11,14 @@ import UIKit
 class MainScreenController: UIViewController {
     
     @IBAction func newGame(_ sender: UIButton) {
+//        let gameVC = storyboard?.instantiateViewController(withIdentifier: "GameSceneController") as! GameSceneController
+//        self.navigationController?.pushViewController(gameVC, animated: true)
     }
     @IBAction func records(_ sender: UIButton) {
     }
     
+    @IBAction func prepareForUnwind(segue: UIStoryboardSegue) {
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
