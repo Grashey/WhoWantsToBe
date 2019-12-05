@@ -16,44 +16,68 @@ class GameSceneController: UIViewController {
     }
 
     @IBOutlet weak var questionLabel: UILabel!
-    @IBOutlet weak var answerALabel: UILabel!
-    @IBOutlet weak var answerBLabel: UILabel!
-    @IBOutlet weak var answerCLabel: UILabel!
-    @IBOutlet weak var answerDLabel: UILabel!
+    @IBOutlet var buttons: [UIButton]!
+    @IBAction func isPressedButton(_ sender: UIButton) {
+        isTapped(button: sender)
+    }
     
     let questions = QuestionsBase()
+    var keyQuestion = String()
+    var roundQuestions = [String:[String]]()
+    let charArray = ["A: ",  "B: ", "C: ", "D: "]
     
     var round = 1
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        let sessionQuestions = questions.setThePullOfQuestions().enumerated()
-        for (index, element) in sessionQuestions {
-            if index == 0 {
-                questionLabel.text = element.key
-                let answersArray = element.value.shuffled()
-                answerALabel.text = "A: \(answersArray[0])"
-                answerBLabel.text = "B: \(answersArray[1])"
-                answerCLabel.text = "C: \(answersArray[2])"
-                answerDLabel.text = "D: \(answersArray[3])"
-            }
-            round += 1
-        }
         
-        
-        // Do any additional setup after loading the view.
+        setQuestion()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    override func viewWillLayoutSubviews() {
+        
+        buttons.forEach { button in
+           button.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
+           button.titleLabel?.textAlignment = .left
+           button.titleLabel?.numberOfLines = 0
+        }
     }
-    */
-
+    
+    func setQuestion(){
+        roundQuestions = questions.setThePullOfQuestions(round: round)
+        let round = roundQuestions.enumerated()
+        for (index, element) in round {
+            if index == 0 {
+                questionLabel.text = element.key
+                keyQuestion = element.key
+                let answersArray = element.value.shuffled()
+                for i in 0..<buttons.count {
+                    let button = buttons[i] as UIButton
+                    button.backgroundColor = .white
+                    button.setTitle(charArray[i] + answersArray[i], for: .normal)
+                }
+            }
+        }
+    }
+    
+    func isTapped(button: UIButton){
+        button.backgroundColor = .systemYellow
+        let answers = roundQuestions[keyQuestion]
+        for i in 0..<buttons.count {
+            if button == buttons[i] {
+                if button.titleLabel?.text == charArray[i] + (answers?[0] ?? "") {
+                    
+                    button.backgroundColor = .green
+                    sleep(1)
+                    round += 1
+                    setQuestion()
+                } else {
+                    sleep(1)
+                    button.backgroundColor = .red
+                }
+            }
+        }
+    }
+    
 }
+
