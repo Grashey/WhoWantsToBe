@@ -20,7 +20,10 @@ class GameSceneController: UIViewController {
     @IBAction func isPressedButton(_ sender: UIButton) {
         isTapped(button: sender)
     }
+    @IBOutlet weak var scoreLabel: UILabel!
+    @IBOutlet weak var roundLabel: UILabel!
     
+    let prize = [0, 100, 200, 300, 500, 1_000, 2_000, 4_000, 8_000, 16_000, 32_000, 64_000, 125_000, 250_000, 500_000, 1_000_000]
     let questions = QuestionsBase()
     var keyQuestion = String()
     var roundQuestions = [String:[String]]()
@@ -30,7 +33,6 @@ class GameSceneController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setQuestion()
     }
     
@@ -47,6 +49,8 @@ class GameSceneController: UIViewController {
         roundQuestions = questions.setThePullOfQuestions(round: round)
         let round = roundQuestions.enumerated()
         for (index, element) in round {
+            roundLabel.text = "Вопрос \(self.round):"
+            scoreLabel.text = "счет: " + String(prize[self.round - 1])
             if index == 0 {
                 questionLabel.text = element.key
                 keyQuestion = element.key
@@ -66,7 +70,6 @@ class GameSceneController: UIViewController {
         for i in 0..<buttons.count {
             if button == buttons[i] {
                 if button.titleLabel?.text == charArray[i] + (answers?[0] ?? "") {
-                    
                     button.backgroundColor = .green
                     sleep(1)
                     round += 1
