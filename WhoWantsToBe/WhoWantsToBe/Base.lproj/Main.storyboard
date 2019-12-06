@@ -148,6 +148,20 @@
                                 <color key="textColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TbJ-4A-8Eb">
+                                <rect key="frame" x="134.5" y="533.5" width="145" height="29"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="TbJ-4A-8Eb" secondAttribute="height" multiplier="5:1" id="HdM-r6-FgO"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="rdP-hu-wNd"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Rockwell-Bold" family="Rockwell" pointSize="17"/>
+                                <state key="normal" title="game over">
+                                    <color key="titleColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <segue destination="aFd-EK-F4m" kind="unwind" unwindAction="prepareForUnwindWithSegue:" id="JHg-xA-kgD"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="pRz-90-0K2">
                                 <rect key="frame" x="20" y="578" width="177" height="60"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
@@ -242,8 +256,8 @@
                                 <color key="textColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o1M-KF-nuD">
-                                <rect key="frame" x="176.5" y="426" width="61.5" height="22"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Round Label" textAlignment="center" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o1M-KF-nuD">
+                                <rect key="frame" x="138" y="426" width="138" height="22"/>
                                 <fontDescription key="fontDescription" name="Rockwell-Regular" family="Rockwell" pointSize="22"/>
                                 <color key="textColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -261,6 +275,7 @@
                             <constraint firstItem="uny-4w-L2z" firstAttribute="centerX" secondItem="03b-RC-27F" secondAttribute="centerX" id="8gq-YZ-HwP"/>
                             <constraint firstItem="TaG-gN-u27" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="Umm-7a-naA" secondAttribute="trailing" id="CxT-9E-vnp"/>
                             <constraint firstItem="QQA-zm-fcn" firstAttribute="height" secondItem="o1Q-Xk-cbT" secondAttribute="height" id="FGw-Kh-APq"/>
+                            <constraint firstItem="TbJ-4A-8Eb" firstAttribute="centerY" secondItem="uny-4w-L2z" secondAttribute="bottom" id="Fc7-00-4tE"/>
                             <constraint firstItem="pRz-90-0K2" firstAttribute="top" secondItem="uny-4w-L2z" secondAttribute="bottom" constant="30" id="GfM-Lh-mK8"/>
                             <constraint firstItem="yej-dg-pCe" firstAttribute="centerY" secondItem="QQA-zm-fcn" secondAttribute="centerY" id="GmI-U7-2dn"/>
                             <constraint firstItem="TaG-gN-u27" firstAttribute="height" secondItem="pRz-90-0K2" secondAttribute="height" id="IMa-Mv-XWw"/>
@@ -293,6 +308,7 @@
                             <constraint firstItem="yej-dg-pCe" firstAttribute="width" secondItem="yej-dg-pCe" secondAttribute="height" multiplier="16:9" id="uA4-OM-64p"/>
                             <constraint firstItem="TaG-gN-u27" firstAttribute="leading" secondItem="Umm-7a-naA" secondAttribute="leading" id="v87-c0-Xil"/>
                             <constraint firstItem="J1N-xf-WzO" firstAttribute="trailing" secondItem="yej-dg-pCe" secondAttribute="trailing" id="w6G-ox-Dr3"/>
+                            <constraint firstItem="TbJ-4A-8Eb" firstAttribute="centerX" secondItem="uny-4w-L2z" secondAttribute="centerX" id="wuP-Fr-BIe"/>
                             <constraint firstItem="9P6-k0-fg3" firstAttribute="top" secondItem="03b-RC-27F" secondAttribute="top" constant="30" id="wz6-s7-a4a"/>
                             <constraint firstItem="o1Q-Xk-cbT" firstAttribute="leading" secondItem="03b-RC-27F" secondAttribute="centerX" id="xuV-k9-zRd"/>
                             <constraint firstItem="9P6-k0-fg3" firstAttribute="leading" secondItem="03b-RC-27F" secondAttribute="leading" constant="20" id="yyZ-EC-JRr"/>
@@ -303,6 +319,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="kdu-sY-jsc"/>
                     <connections>
+                        <outlet property="gameOverButton" destination="TbJ-4A-8Eb" id="aw7-Yc-DF8"/>
                         <outlet property="questionLabel" destination="uny-4w-L2z" id="uNE-Ga-PmE"/>
                         <outlet property="roundLabel" destination="o1M-KF-nuD" id="11R-xZ-37d"/>
                         <outlet property="scoreLabel" destination="J1N-xf-WzO" id="FYo-hl-nZi"/>

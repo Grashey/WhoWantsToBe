@@ -22,6 +22,7 @@ class GameSceneController: UIViewController {
     }
     @IBOutlet weak var scoreLabel: UILabel!
     @IBOutlet weak var roundLabel: UILabel!
+    @IBOutlet weak var gameOverButton: UIButton!
     
     let prize = [0, 100, 200, 300, 500, 1_000, 2_000, 4_000, 8_000, 16_000, 32_000, 64_000, 125_000, 250_000, 500_000, 1_000_000]
     let questions = QuestionsBase()
@@ -33,6 +34,8 @@ class GameSceneController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        gameOverButton.isHidden = true
         setQuestion()
     }
     
@@ -77,6 +80,11 @@ class GameSceneController: UIViewController {
                 } else {
                     sleep(1)
                     button.backgroundColor = .red
+                    roundLabel.text = "Вы проиграли!"
+                    questionLabel.text = "Верных ответов: \(round - 1) из 15\nВаш выигрыш: \(self.prize[round - 1]) рублей"
+                    gameOverButton.backgroundColor = .gray
+                    gameOverButton.setTitle("Выход", for: .normal)
+                    gameOverButton.isHidden = false
                 }
             }
         }
