@@ -8,11 +8,10 @@
 
 import UIKit
 
-class MainScreenController: UIViewController {
+class MainViewController: UIViewController {
     
     @IBAction func newGame(_ sender: UIButton) {
-//        let gameVC = storyboard?.instantiateViewController(withIdentifier: "GameSceneController") as! GameSceneController
-//        self.navigationController?.pushViewController(gameVC, animated: true)
+
     }
     @IBAction func records(_ sender: UIButton) {
     }
@@ -22,9 +21,7 @@ class MainScreenController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
     }
-
-
 }
 

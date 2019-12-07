@@ -1,5 +1,5 @@
 //
-//  GameSceneController.swift
+//  GameViewController.swift
 //  WhoWantsToBe
 //
 //  Created by Aleksandr Fetisov on 04.12.2019.
@@ -8,8 +8,8 @@
 
 import UIKit
 
-class GameSceneController: UIViewController {
-
+class GameViewController: UIViewController, GameSessionDelegate {
+    
     @IBAction func logOutButtonPressed(_ sender: Any) {
         self.performSegue(withIdentifier: "logOutSegue", sender: self)
         self.dismiss(animated: true, completion: nil)
@@ -26,6 +26,7 @@ class GameSceneController: UIViewController {
     
     let prize = [0, 100, 200, 300, 500, 1_000, 2_000, 4_000, 8_000, 16_000, 32_000, 64_000, 125_000, 250_000, 500_000, 1_000_000]
     let questions = QuestionsBase()
+    let gameSession = GameSession()
     var keyQuestion = String()
     var roundQuestions = [String:[String]]()
     let charArray = ["A: ",  "B: ", "C: ", "D: "]
@@ -35,8 +36,12 @@ class GameSceneController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        gameSession.delegate = self
         gameOverButton.isHidden = true
         setQuestion()
+        
+        let game = Game.instance
+        game.result = gameSession
     }
     
     override func viewWillLayoutSubviews() {
@@ -49,6 +54,7 @@ class GameSceneController: UIViewController {
     }
     
     func setQuestion(){
+        saveData(round: self.round)
         roundQuestions = questions.setThePullOfQuestions(round: round)
         let round = roundQuestions.enumerated()
         for (index, element) in round {
@@ -85,10 +91,17 @@ class GameSceneController: UIViewController {
                     gameOverButton.backgroundColor = .gray
                     gameOverButton.setTitle("Выход", for: .normal)
                     gameOverButton.isHidden = false
+                    saveData(round: round)
                 }
             }
         }
     }
     
+    func saveData(round: Int) {
+        gameSession.date = Date()
+        gameSession.score = prize[round - 1]
+        gameSession.correctAnswers = round - 1
+        gameSession.questionCount = 15
+    }
 }
 
