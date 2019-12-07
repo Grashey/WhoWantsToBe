@@ -6,4 +6,14 @@
 //  Copyright © 2019 Aleksandr Fetisov. All rights reserved.
 //
 
-import Foundation
+import UIKit
+
+protocol Reusable {}
+
+extension UITableViewCell: Reusable {}
+
+extension Reusable where Self: UITableViewCell {
+    static var reuseID: String {
+        return String(describing: self)
+    }
+}

@@ -10,7 +10,11 @@ import UIKit
 
 class RecordsViewController: UITableViewController {
 
-
+    @IBAction func logOutButtonPressed(_ sender: Any) {
+        self.performSegue(withIdentifier: "logOutSegue", sender: self)
+        self.dismiss(animated: true, completion: nil)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -18,19 +22,18 @@ class RecordsViewController: UITableViewController {
 
     // MARK: - Table view data source
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return 0
-    }
-
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
+        let cell = tableView.dequeueReusableCell(withIdentifier: RecordsViewCell.reuseID, for: indexPath) as! RecordsViewCell
+        cell.configure(with: Game.instance.result)
+//        cell.answers.text = "111"
+//        cell.prize.text = "1 000 000"
+//        cell.hintsUsed.text = "0 / 3"
+//        cell.date.text = "\(Date())"
+        
         return cell
     }
 
@@ -68,8 +71,6 @@ class RecordsViewController: UITableViewController {
         return true
     }
     */
-
-    /*
  
 
 }

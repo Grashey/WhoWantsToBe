@@ -36,12 +36,13 @@ class GameViewController: UIViewController, GameSessionDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let game = Game.instance
+        game.result = gameSession
+        print("New ",  game.result.correctAnswers)
+        
         gameSession.delegate = self
         gameOverButton.isHidden = true
         setQuestion()
-        
-        let game = Game.instance
-        game.result = gameSession
     }
     
     override func viewWillLayoutSubviews() {
@@ -102,6 +103,7 @@ class GameViewController: UIViewController, GameSessionDelegate {
         gameSession.score = prize[round - 1]
         gameSession.correctAnswers = round - 1
         gameSession.questionCount = 15
+        print(Game.instance.result.correctAnswers)
     }
 }
 

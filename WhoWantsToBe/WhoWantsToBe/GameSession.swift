@@ -7,3 +7,17 @@
 //
 
 import Foundation
+
+protocol GameSessionDelegate: class {
+    func saveData(round: Int)
+}
+
+class GameSession {
+    
+    weak var delegate: GameSessionDelegate?
+    
+    var date = Date()
+    var score = Int()
+    var correctAnswers = Int()
+    var questionCount = Int()
+}

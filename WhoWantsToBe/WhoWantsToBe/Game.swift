@@ -7,3 +7,11 @@
 //
 
 import Foundation
+
+class Game {
+    
+    static let instance = Game()
+    private init(){}
+    
+    var result = GameSession()
+}
