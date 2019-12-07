@@ -55,7 +55,6 @@ class GameViewController: UIViewController, GameSessionDelegate {
     }
     
     func setQuestion(){
-        saveData(round: self.round)
         roundQuestions = questions.setThePullOfQuestions(round: round)
         let round = roundQuestions.enumerated()
         for (index, element) in round {
@@ -75,24 +74,39 @@ class GameViewController: UIViewController, GameSessionDelegate {
     }
     
     func isTapped(button: UIButton){
-        button.backgroundColor = .systemYellow
+        saveData(round: self.round)
+        button.backgroundColor = .yellow
         let answers = roundQuestions[keyQuestion]
         for i in 0..<buttons.count {
             if button == buttons[i] {
                 if button.titleLabel?.text == charArray[i] + (answers?[0] ?? "") {
-                    button.backgroundColor = .green
                     sleep(1)
                     round += 1
                     setQuestion()
+                    if round > 15 {
+                        roundLabel.text = "Вы стали миллионером!"
+                        questionLabel.text = "Верных ответов: \(round - 1) из 15\nВаш выигрыш: \(self.prize[round - 1]) рублей"
+                        gameOverButton.setTitle("Выход", for: .normal)
+                        gameOverButton.isHidden = false
+                        for i in 0..<buttons.count {
+                            let button = buttons[i] as UIButton
+                            button.setTitle("", for: .normal)
+                            button.isEnabled = false
+                        }
+                    }
+                    
                 } else {
                     sleep(1)
                     button.backgroundColor = .red
                     roundLabel.text = "Вы проиграли!"
                     questionLabel.text = "Верных ответов: \(round - 1) из 15\nВаш выигрыш: \(self.prize[round - 1]) рублей"
-                    gameOverButton.backgroundColor = .gray
                     gameOverButton.setTitle("Выход", for: .normal)
                     gameOverButton.isHidden = false
-                    saveData(round: round)
+                    for i in 0..<buttons.count {
+                        let button = buttons[i] as UIButton
+                        button.isEnabled = false
+                    }
+                    //saveData(round: round)
                 }
             }
         }
