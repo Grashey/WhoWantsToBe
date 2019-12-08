@@ -16,8 +16,10 @@ final class RecordsCaretaker {
     private let key = "records"
     
     func save(records: [Record]) {
+        let allRecords = retrieveRecords()
+        let newRecords = allRecords + records
         do {
-            let data = try self.encoder.encode(records)
+            let data = try self.encoder.encode(newRecords)
             UserDefaults.standard.set(data, forKey: key)
         } catch {
             print(error)
@@ -34,6 +36,11 @@ final class RecordsCaretaker {
             print(error)
             return []
         }
+    }
+    func clearRecords() {
+        guard var data = UserDefaults.standard.data(forKey: key) else { return }
+        data.removeAll()
+        UserDefaults.standard.set(data, forKey: key)
     }
 }
 

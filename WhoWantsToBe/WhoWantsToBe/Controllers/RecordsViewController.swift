@@ -10,9 +10,9 @@ import UIKit
 
 class RecordsViewController: UITableViewController {
 
-    @IBAction func logOutButtonPressed(_ sender: Any) {
-        self.performSegue(withIdentifier: "logOutSegue", sender: self)
-        self.dismiss(animated: true, completion: nil)
+    @IBAction func clearRecords(_ sender: Any) {
+        rec.clearRecords()
+        self.tableView.reloadData()
     }
     
     let rec = RecordsCaretaker()
@@ -20,10 +20,6 @@ class RecordsViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let lastGameResult = Game.instance.result
-        let lastRecordResult = Record(date: lastGameResult.date, score: lastGameResult.score, correctAnswers: lastGameResult.correctAnswers, questionCount: lastGameResult.questionCount, hints: "0 / 3")
-        
-        rec.save(records: [lastRecordResult])
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

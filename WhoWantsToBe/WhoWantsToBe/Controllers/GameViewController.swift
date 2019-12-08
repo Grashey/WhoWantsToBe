@@ -10,9 +10,10 @@ import UIKit
 
 class GameViewController: UIViewController {
     
-    @IBAction func logOutButtonPressed(_ sender: Any) {
-        self.performSegue(withIdentifier: "logOutSegue", sender: self)
-        self.dismiss(animated: true, completion: nil)
+    @IBAction func gameOver(_ sender: UIButton) {
+        let rec = RecordsCaretaker()
+        let lastResult = Record(date: gameSession.date, score: gameSession.score, correctAnswers: gameSession.correctAnswers, questionCount: gameSession.questionCount, hints: "0 / 3")
+        rec.save(records: [lastResult])
     }
 
     @IBOutlet weak var questionLabel: UILabel!
@@ -47,6 +48,7 @@ class GameViewController: UIViewController {
         setQuestion()
         
     }
+
     // не работает
     override func viewWillLayoutSubviews() {
         
@@ -89,6 +91,7 @@ class GameViewController: UIViewController {
                         roundLabel.text = "Вы стали миллионером!"
                         questionLabel.text = "Верных ответов: \(round - 1) из 15\nВаш выигрыш: \(self.prize[round - 1]) рублей"
                         gameOverButton.isHidden = false
+                        gameOver(gameOverButton)
                         for i in 0..<buttons.count {
                             let button = buttons[i] as UIButton
                             button.setTitle("", for: .normal)
@@ -101,6 +104,7 @@ class GameViewController: UIViewController {
                     roundLabel.text = "Вы проиграли!"
                     questionLabel.text = "Верных ответов: \(round - 1) из 15\nВаш выигрыш: \(self.prize[round - 1]) рублей"
                     gameOverButton.isHidden = false
+                    gameOver(gameOverButton)
                     for i in 0..<buttons.count {
                         let button = buttons[i] as UIButton
                         button.isEnabled = false

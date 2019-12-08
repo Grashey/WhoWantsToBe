@@ -92,8 +92,12 @@
                                 <navigationItem title="Records" id="VfJ-cn-CRe">
                                     <barButtonItem key="leftBarButtonItem" systemItem="stop" id="Bx0-my-cY4">
                                         <connections>
-                                            <action selector="logOutButtonPressed:" destination="jZ8-hc-Co2" id="lrK-RV-K1X"/>
                                             <segue destination="Xgb-fX-EIo" kind="unwind" unwindAction="prepareForUnwindWithSegue:" id="riC-rO-uw8"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem key="rightBarButtonItem" title="Clear Results" id="moy-bw-3Ye">
+                                        <connections>
+                                            <action selector="clearRecords:" destination="jZ8-hc-Co2" id="goe-br-R6c"/>
                                         </connections>
                                     </barButtonItem>
                                 </navigationItem>
@@ -216,7 +220,7 @@
                                     <color key="titleColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="aFd-EK-F4m" kind="unwind" unwindAction="prepareForUnwindWithSegue:" id="JHg-xA-kgD"/>
+                                    <segue destination="aFd-EK-F4m" kind="unwind" unwindAction="prepareForUnwindWithSegue:" id="Roh-z4-ZNj"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="pRz-90-0K2">
