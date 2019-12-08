@@ -205,11 +205,13 @@
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TbJ-4A-8Eb">
                                 <rect key="frame" x="134.5" y="533.5" width="145" height="29"/>
+                                <color key="backgroundColor" red="0.093268491327762604" green="0.21183973550796509" blue="0.50472617149353027" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="TbJ-4A-8Eb" secondAttribute="height" multiplier="5:1" id="HdM-r6-FgO"/>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="rdP-hu-wNd"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Rockwell-Bold" family="Rockwell" pointSize="17"/>
+                                <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <state key="normal" title="game over">
                                     <color key="titleColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>

@@ -20,7 +20,7 @@ class RecordsViewCell: UITableViewCell {
         
     }
     
-    public func configure(with: GameSession){
+    public func configure(with: Record){
         answers.text = "\(with.correctAnswers)"
         prize.text = "\(with.score)"
         hintsUsed.text = "0 / 3"
@@ -28,3 +28,4 @@ class RecordsViewCell: UITableViewCell {
     }
 
 }
+

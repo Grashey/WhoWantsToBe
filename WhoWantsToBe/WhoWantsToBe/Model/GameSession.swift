@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol GameSessionDelegate: class {
+protocol GameSessionDelegate: class  {
     func saveData(round: Int)
 }
 
@@ -20,4 +20,8 @@ class GameSession {
     var score = Int()
     var correctAnswers = Int()
     var questionCount = Int()
+
+    func saveData(round: Int){
+        self.delegate?.saveData(round: round)
+    }
 }
