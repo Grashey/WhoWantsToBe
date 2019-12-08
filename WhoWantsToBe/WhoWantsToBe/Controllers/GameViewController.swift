@@ -8,7 +8,7 @@
 
 import UIKit
 
-class GameViewController: UIViewController, GameSessionDelegate {
+class GameViewController: UIViewController {
     
     @IBAction func logOutButtonPressed(_ sender: Any) {
         self.performSegue(withIdentifier: "logOutSegue", sender: self)
@@ -19,6 +19,7 @@ class GameViewController: UIViewController, GameSessionDelegate {
     @IBOutlet var buttons: [UIButton]!
     @IBAction func isPressedButton(_ sender: UIButton) {
         isTapped(button: sender)
+        saveData(round: self.round)
     }
     @IBOutlet weak var scoreLabel: UILabel!
     @IBOutlet weak var roundLabel: UILabel!
@@ -36,15 +37,17 @@ class GameViewController: UIViewController, GameSessionDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        gameSession.delegate = self
+        
         let game = Game.instance
         game.result = gameSession
-        print("New ",  game.result.correctAnswers)
         
-        gameSession.delegate = self
         gameOverButton.isHidden = true
+        gameOverButton.setTitle("Выход", for: .normal)
         setQuestion()
+        
     }
-    
+    // не работает
     override func viewWillLayoutSubviews() {
         
         buttons.forEach { button in
@@ -74,19 +77,17 @@ class GameViewController: UIViewController, GameSessionDelegate {
     }
     
     func isTapped(button: UIButton){
-        saveData(round: self.round)
-        button.backgroundColor = .yellow
         let answers = roundQuestions[keyQuestion]
         for i in 0..<buttons.count {
             if button == buttons[i] {
                 if button.titleLabel?.text == charArray[i] + (answers?[0] ?? "") {
                     sleep(1)
                     round += 1
-                    setQuestion()
-                    if round > 15 {
+                    if round <= 15 {
+                        setQuestion()
+                    } else {
                         roundLabel.text = "Вы стали миллионером!"
                         questionLabel.text = "Верных ответов: \(round - 1) из 15\nВаш выигрыш: \(self.prize[round - 1]) рублей"
-                        gameOverButton.setTitle("Выход", for: .normal)
                         gameOverButton.isHidden = false
                         for i in 0..<buttons.count {
                             let button = buttons[i] as UIButton
@@ -94,30 +95,29 @@ class GameViewController: UIViewController, GameSessionDelegate {
                             button.isEnabled = false
                         }
                     }
-                    
                 } else {
                     sleep(1)
                     button.backgroundColor = .red
                     roundLabel.text = "Вы проиграли!"
                     questionLabel.text = "Верных ответов: \(round - 1) из 15\nВаш выигрыш: \(self.prize[round - 1]) рублей"
-                    gameOverButton.setTitle("Выход", for: .normal)
                     gameOverButton.isHidden = false
                     for i in 0..<buttons.count {
                         let button = buttons[i] as UIButton
                         button.isEnabled = false
                     }
-                    //saveData(round: round)
                 }
             }
         }
     }
+}
+
+extension GameViewController: GameSessionDelegate {
     
     func saveData(round: Int) {
         gameSession.date = Date()
         gameSession.score = prize[round - 1]
         gameSession.correctAnswers = round - 1
-        gameSession.questionCount = 15
-        print(Game.instance.result.correctAnswers)
+        gameSession.questionCount = round
     }
 }
 

@@ -15,62 +15,56 @@ class RecordsViewController: UITableViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
+    let rec = RecordsCaretaker()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        let lastGameResult = Game.instance.result
+        let lastRecordResult = Record(date: lastGameResult.date, score: lastGameResult.score, correctAnswers: lastGameResult.correctAnswers, questionCount: lastGameResult.questionCount, hints: "0 / 3")
+        
+        rec.save(records: [lastRecordResult])
     }
 
-    // MARK: - Table view data source
-
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return rec.retrieveRecords().count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: RecordsViewCell.reuseID, for: indexPath) as! RecordsViewCell
-        cell.configure(with: Game.instance.result)
-//        cell.answers.text = "111"
-//        cell.prize.text = "1 000 000"
-//        cell.hintsUsed.text = "0 / 3"
-//        cell.date.text = "\(Date())"
-        
+        let records = rec.retrieveRecords()
+        cell.configure(with: records[indexPath.row])
         return cell
     }
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+    
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
+        let header = RecordsHeaderView()
+        
+        let labelWidth = tableView.frame.size.width / 4
+        let labelFont = UIFont.systemFont(ofSize: 10)
+        
+        let labelOne = UILabel(frame: CGRect(x: 0, y: 5, width: labelWidth, height: 18))
+        labelOne.font = labelFont
+        labelOne.text = "rounds"
+        
+        let labelTwo = UILabel(frame: CGRect(x: labelWidth , y: 5 , width: labelWidth, height: 18))
+        labelTwo.font = labelFont
+        labelTwo.text = "money"
+        
+        let labelThree = UILabel(frame: CGRect(x: labelWidth * 2 , y: 5 , width: labelWidth, height: 18))
+        labelThree.font = labelFont
+        labelThree.text = "hints"
+        
+        let labelFour = UILabel(frame: CGRect(x: labelWidth * 3 , y: 5 , width: labelWidth, height: 18))
+        labelFour.font = labelFont
+        labelFour.text = "date"
+        
+        header.addSubview(labelOne)
+        header.addSubview(labelTwo)
+        header.addSubview(labelThree)
+        header.addSubview(labelFour)
+        
+        return header
     }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
- 
-
 }

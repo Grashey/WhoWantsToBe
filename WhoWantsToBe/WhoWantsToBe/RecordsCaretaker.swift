@@ -39,9 +39,10 @@ final class RecordsCaretaker {
 
 struct Record: Codable {
     
-    let date = Date()
-    let score = Int()
-    let correctAnswers = Int()
-    let questionCount = Int()
-    let hints = String()
+    var date: Date
+    var score: Int
+    var correctAnswers: Int
+    var questionCount: Int
+    var hints: String
 }
+
