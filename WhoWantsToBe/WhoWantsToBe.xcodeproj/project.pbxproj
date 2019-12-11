@@ -12,6 +12,7 @@
 		B6A55438239B31F400476C8D /* RecordsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A55437239B31F400476C8D /* RecordsViewCell.swift */; };
 		B6A5543A239B329C00476C8D /* ViewCell+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A55439239B329C00476C8D /* ViewCell+Ext.swift */; };
 		B6A5543E239D42AD00476C8D /* RecordsCaretaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A5543D239D42AD00476C8D /* RecordsCaretaker.swift */; };
+		B6CB6CC323A1801700905B6D /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6CB6CC223A1801700905B6D /* GameView.swift */; };
 		B6D505FD239D9792000FB391 /* RecordsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D505FC239D9792000FB391 /* RecordsHeaderView.swift */; };
 		B6FCAF182396904300C3F48D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FCAF172396904300C3F48D /* AppDelegate.swift */; };
 		B6FCAF1A2396904300C3F48D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FCAF192396904300C3F48D /* SceneDelegate.swift */; };
@@ -30,6 +31,7 @@
 		B6A55437239B31F400476C8D /* RecordsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordsViewCell.swift; sourceTree = "<group>"; };
 		B6A55439239B329C00476C8D /* ViewCell+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewCell+Ext.swift"; sourceTree = "<group>"; };
 		B6A5543D239D42AD00476C8D /* RecordsCaretaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordsCaretaker.swift; sourceTree = "<group>"; };
+		B6CB6CC223A1801700905B6D /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		B6D505FC239D9792000FB391 /* RecordsHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordsHeaderView.swift; sourceTree = "<group>"; };
 		B6FCAF142396904300C3F48D /* WhoWantsToBe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WhoWantsToBe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6FCAF172396904300C3F48D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -79,6 +81,7 @@
 			isa = PBXGroup;
 			children = (
 				B6D505FC239D9792000FB391 /* RecordsHeaderView.swift */,
+				B6CB6CC223A1801700905B6D /* GameView.swift */,
 				B6A55437239B31F400476C8D /* RecordsViewCell.swift */,
 			);
 			path = View;
@@ -208,6 +211,7 @@
 				B6A55434239B202D00476C8D /* GameSession.swift in Sources */,
 				B6FCAF1A2396904300C3F48D /* SceneDelegate.swift in Sources */,
 				B6FCAF2F2397C66A00C3F48D /* GameViewController.swift in Sources */,
+				B6CB6CC323A1801700905B6D /* GameView.swift in Sources */,
 				B6A55436239B243D00476C8D /* Game.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

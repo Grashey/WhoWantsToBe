@@ -182,7 +182,7 @@
         <scene sceneID="tNf-Xq-Fmg">
             <objects>
                 <viewController storyboardIdentifier="GameSceneController" id="V9v-0C-oJw" customClass="GameViewController" customModule="WhoWantsToBe" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="ayu-00-vWc">
+                    <view key="view" contentMode="scaleToFill" id="ayu-00-vWc" customClass="GameView" customModule="WhoWantsToBe" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -197,7 +197,7 @@
                                     <constraint firstAttribute="width" secondItem="9P6-k0-fg3" secondAttribute="height" multiplier="1:1" id="yaM-93-asP"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Question" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uny-4w-L2z">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Question" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uny-4w-L2z">
                                 <rect key="frame" x="20" y="448" width="374" height="100"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -223,47 +223,76 @@
                                     <segue destination="aFd-EK-F4m" kind="unwind" unwindAction="prepareForUnwindWithSegue:" id="Roh-z4-ZNj"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="pRz-90-0K2">
+                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pRz-90-0K2">
                                 <rect key="frame" x="20" y="578" width="177" height="60"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="2BA-Lg-PtP"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Rockwell-Regular" family="Rockwell" pointSize="14"/>
-                                <state key="normal" title="Answer A"/>
+                                <state key="normal">
+                                    <attributedString key="attributedTitle">
+                                        <fragment content="Answer A">
+                                            <attributes>
+                                                <font key="NSFont" size="14" name="Rockwell-Regular"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
+                                </state>
                                 <connections>
                                     <action selector="isPressedButton:" destination="V9v-0C-oJw" eventType="touchUpInside" id="FRl-i6-5am"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Umm-7a-naA">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Umm-7a-naA">
                                 <rect key="frame" x="217" y="578" width="177" height="60"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                <fontDescription key="fontDescription" name="Rockwell-Regular" family="Rockwell" pointSize="14"/>
-                                <state key="normal" title="Answer B"/>
+                                <state key="normal">
+                                    <attributedString key="attributedTitle">
+                                        <fragment content="Answer B">
+                                            <attributes>
+                                                <font key="NSFont" size="14" name="Rockwell-Regular"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
+                                </state>
                                 <connections>
                                     <action selector="isPressedButton:" destination="V9v-0C-oJw" eventType="touchUpInside" id="qUD-vi-uiR"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="176-kE-ofk">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="176-kE-ofk">
                                 <rect key="frame" x="20" y="658" width="177" height="60"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="Zgn-FN-QqY"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Rockwell-Regular" family="Rockwell" pointSize="14"/>
-                                <state key="normal" title="Answer C"/>
+                                <state key="normal">
+                                    <attributedString key="attributedTitle">
+                                        <fragment content="Answer C">
+                                            <attributes>
+                                                <font key="NSFont" size="14" name="Rockwell-Regular"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
+                                </state>
                                 <connections>
                                     <action selector="isPressedButton:" destination="V9v-0C-oJw" eventType="touchUpInside" id="tDK-zF-8F2"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TaG-gN-u27">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TaG-gN-u27">
                                 <rect key="frame" x="217" y="658" width="177" height="60"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="DFf-I6-h0M"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Rockwell-Regular" family="Rockwell" pointSize="14"/>
-                                <state key="normal" title="Answer D"/>
+                                <state key="normal">
+                                    <attributedString key="attributedTitle">
+                                        <fragment content="Answer D">
+                                            <attributes>
+                                                <font key="NSFont" size="14" name="Rockwell-Regular"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
+                                </state>
                                 <connections>
                                     <action selector="isPressedButton:" destination="V9v-0C-oJw" eventType="touchUpInside" id="pso-fE-Kil"/>
                                 </connections>
@@ -331,10 +360,10 @@
                             <constraint firstItem="yej-dg-pCe" firstAttribute="height" secondItem="QQA-zm-fcn" secondAttribute="height" id="0md-98-0i8"/>
                             <constraint firstItem="yej-dg-pCe" firstAttribute="leading" secondItem="QQA-zm-fcn" secondAttribute="trailing" constant="10" id="4Z7-tQ-k1p"/>
                             <constraint firstItem="QQA-zm-fcn" firstAttribute="leading" secondItem="o1Q-Xk-cbT" secondAttribute="trailing" constant="10" id="6yc-AZ-AZU"/>
-                            <constraint firstItem="Umm-7a-naA" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="uny-4w-L2z" secondAttribute="trailing" id="8Xe-d5-UW8"/>
+                            <constraint firstItem="03b-RC-27F" firstAttribute="trailing" secondItem="Umm-7a-naA" secondAttribute="trailing" constant="20" id="8Xe-d5-UW8"/>
                             <constraint firstItem="jhF-2H-4km" firstAttribute="centerY" secondItem="ayu-00-vWc" secondAttribute="centerY" id="8dZ-Tr-RNz"/>
                             <constraint firstItem="uny-4w-L2z" firstAttribute="centerX" secondItem="03b-RC-27F" secondAttribute="centerX" id="8gq-YZ-HwP"/>
-                            <constraint firstItem="TaG-gN-u27" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="Umm-7a-naA" secondAttribute="trailing" id="CxT-9E-vnp"/>
+                            <constraint firstItem="TaG-gN-u27" firstAttribute="trailing" secondItem="Umm-7a-naA" secondAttribute="trailing" id="CxT-9E-vnp"/>
                             <constraint firstItem="QQA-zm-fcn" firstAttribute="height" secondItem="o1Q-Xk-cbT" secondAttribute="height" id="FGw-Kh-APq"/>
                             <constraint firstItem="TbJ-4A-8Eb" firstAttribute="centerY" secondItem="uny-4w-L2z" secondAttribute="bottom" id="Fc7-00-4tE"/>
                             <constraint firstItem="pRz-90-0K2" firstAttribute="top" secondItem="uny-4w-L2z" secondAttribute="bottom" constant="30" id="GfM-Lh-mK8"/>
@@ -345,7 +374,7 @@
                             <constraint firstItem="uny-4w-L2z" firstAttribute="top" secondItem="o1M-KF-nuD" secondAttribute="bottom" id="NOO-0V-KJ7"/>
                             <constraint firstItem="176-kE-ofk" firstAttribute="centerX" secondItem="pRz-90-0K2" secondAttribute="centerX" id="Qdb-ee-l3i"/>
                             <constraint firstItem="f7a-Pl-Kzs" firstAttribute="top" secondItem="03b-RC-27F" secondAttribute="top" constant="10" id="Qhp-CX-tkY"/>
-                            <constraint firstItem="176-kE-ofk" firstAttribute="leading" relation="lessThanOrEqual" secondItem="pRz-90-0K2" secondAttribute="leading" id="S4G-DG-l6M"/>
+                            <constraint firstItem="176-kE-ofk" firstAttribute="leading" secondItem="pRz-90-0K2" secondAttribute="leading" id="S4G-DG-l6M"/>
                             <constraint firstItem="jhF-2H-4km" firstAttribute="top" secondItem="ayu-00-vWc" secondAttribute="top" id="Shw-vS-hCu"/>
                             <constraint firstItem="03b-RC-27F" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="o1Q-Xk-cbT" secondAttribute="trailing" constant="157" id="St3-zp-iL8"/>
                             <constraint firstItem="176-kE-ofk" firstAttribute="trailing" secondItem="pRz-90-0K2" secondAttribute="trailing" id="Szl-gA-PV6"/>
@@ -357,9 +386,9 @@
                             <constraint firstItem="TaG-gN-u27" firstAttribute="centerY" secondItem="176-kE-ofk" secondAttribute="centerY" id="b9F-Jd-Gha"/>
                             <constraint firstItem="jhF-2H-4km" firstAttribute="leading" secondItem="03b-RC-27F" secondAttribute="leading" id="bpG-xq-yzj"/>
                             <constraint firstItem="uny-4w-L2z" firstAttribute="leading" secondItem="03b-RC-27F" secondAttribute="leading" constant="20" id="cZj-Yd-psm"/>
-                            <constraint firstItem="pRz-90-0K2" firstAttribute="leading" relation="lessThanOrEqual" secondItem="uny-4w-L2z" secondAttribute="leading" id="f3F-v9-GgJ"/>
+                            <constraint firstItem="pRz-90-0K2" firstAttribute="leading" secondItem="03b-RC-27F" secondAttribute="leading" constant="20" id="f3F-v9-GgJ"/>
                             <constraint firstItem="J1N-xf-WzO" firstAttribute="top" secondItem="yej-dg-pCe" secondAttribute="bottom" constant="10" id="f8y-0e-bdx"/>
-                            <constraint firstItem="03b-RC-27F" firstAttribute="trailing" secondItem="uny-4w-L2z" secondAttribute="trailing" constant="20" id="itI-hN-Tj1"/>
+                            <constraint firstItem="03b-RC-27F" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="uny-4w-L2z" secondAttribute="trailing" constant="20" id="itI-hN-Tj1"/>
                             <constraint firstItem="03b-RC-27F" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="yej-dg-pCe" secondAttribute="trailing" symbolic="YES" id="kYo-OD-Gka"/>
                             <constraint firstItem="f7a-Pl-Kzs" firstAttribute="leading" secondItem="03b-RC-27F" secondAttribute="leading" constant="10" id="lea-0A-cPP"/>
                             <constraint firstItem="QQA-zm-fcn" firstAttribute="centerY" secondItem="o1Q-Xk-cbT" secondAttribute="centerY" id="n0Y-eJ-ZzC"/>
@@ -381,6 +410,7 @@
                     <navigationItem key="navigationItem" id="kdu-sY-jsc"/>
                     <connections>
                         <outlet property="gameOverButton" destination="TbJ-4A-8Eb" id="aw7-Yc-DF8"/>
+                        <outlet property="gameView" destination="ayu-00-vWc" id="8pv-V2-aV8"/>
                         <outlet property="questionLabel" destination="uny-4w-L2z" id="uNE-Ga-PmE"/>
                         <outlet property="roundLabel" destination="o1M-KF-nuD" id="11R-xZ-37d"/>
                         <outlet property="scoreLabel" destination="J1N-xf-WzO" id="FYo-hl-nZi"/>
