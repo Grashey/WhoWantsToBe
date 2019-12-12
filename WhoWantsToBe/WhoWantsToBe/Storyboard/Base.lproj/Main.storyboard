@@ -220,6 +220,7 @@
                                     <color key="titleColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
+                                    <action selector="gameOver:" destination="V9v-0C-oJw" eventType="touchUpInside" id="90l-qp-0ZZ"/>
                                     <segue destination="aFd-EK-F4m" kind="unwind" unwindAction="prepareForUnwindWithSegue:" id="Roh-z4-ZNj"/>
                                 </connections>
                             </button>
@@ -406,18 +407,20 @@
                             <constraint firstItem="Umm-7a-naA" firstAttribute="centerY" secondItem="pRz-90-0K2" secondAttribute="centerY" id="zXd-dj-nEK"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="03b-RC-27F"/>
+                        <connections>
+                            <outlet property="gameOverButton" destination="TbJ-4A-8Eb" id="o2m-oc-j9d"/>
+                            <outlet property="questionLabel" destination="uny-4w-L2z" id="Oa1-xf-r49"/>
+                            <outlet property="roundLabel" destination="o1M-KF-nuD" id="T42-b2-p2C"/>
+                            <outlet property="scoreLabel" destination="J1N-xf-WzO" id="9AD-c2-lxb"/>
+                            <outletCollection property="buttons" destination="pRz-90-0K2" collectionClass="NSMutableArray" id="94I-MN-2bT"/>
+                            <outletCollection property="buttons" destination="Umm-7a-naA" collectionClass="NSMutableArray" id="aFC-zM-Zos"/>
+                            <outletCollection property="buttons" destination="176-kE-ofk" collectionClass="NSMutableArray" id="o3C-3F-kS8"/>
+                            <outletCollection property="buttons" destination="TaG-gN-u27" collectionClass="NSMutableArray" id="Y6L-d9-xF6"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" id="kdu-sY-jsc"/>
                     <connections>
-                        <outlet property="gameOverButton" destination="TbJ-4A-8Eb" id="aw7-Yc-DF8"/>
                         <outlet property="gameView" destination="ayu-00-vWc" id="8pv-V2-aV8"/>
-                        <outlet property="questionLabel" destination="uny-4w-L2z" id="uNE-Ga-PmE"/>
-                        <outlet property="roundLabel" destination="o1M-KF-nuD" id="11R-xZ-37d"/>
-                        <outlet property="scoreLabel" destination="J1N-xf-WzO" id="FYo-hl-nZi"/>
-                        <outletCollection property="buttons" destination="pRz-90-0K2" collectionClass="NSMutableArray" id="mFi-jE-ibf"/>
-                        <outletCollection property="buttons" destination="Umm-7a-naA" collectionClass="NSMutableArray" id="ooT-cs-vKT"/>
-                        <outletCollection property="buttons" destination="176-kE-ofk" collectionClass="NSMutableArray" id="8c3-24-pjs"/>
-                        <outletCollection property="buttons" destination="TaG-gN-u27" collectionClass="NSMutableArray" id="Cqe-gC-hlh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XhB-Rr-BsY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
