@@ -25,19 +25,18 @@ class GameView: UIView {
         gameOverButton.setTitle("Выход", for: .normal)
     }
 
-    
-    func configure(data: GameSession) {
-        questionLabel.text = data.question
-        scoreLabel.text = "счет: " + String(data.score)
-        roundLabel.text = data.questionNumber
+    func configure(question: String, questionTitle: String, answers: [String], score: Int, isGameOver: Bool) {
+        questionLabel.text = question
+        scoreLabel.text = "счет: " + String(score)
+        roundLabel.text = questionTitle
         
         for i in 0..<buttons.count {
             let button = buttons[i] as UIButton
             button.backgroundColor = .white
-            let string = NSAttributedString(string: charArray[i] + data.answers[i])
+            let string = NSAttributedString(string: charArray[i] + answers[i])
             button.setAttributedTitle(string, for: .normal)
         }
-        if data.gameOver {
+        if isGameOver {
             gameOverButton.isHidden = false
             for i in 0..<buttons.count {
                 let button = buttons[i] as UIButton

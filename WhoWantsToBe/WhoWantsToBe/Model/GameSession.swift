@@ -8,20 +8,18 @@
 
 import Foundation
 
-protocol GameSessionDelegate: class {
-    func saveData(round: Int)
-}
-
 class GameSession {
     
-    weak var delegate: GameSessionDelegate?
+    func sendData(score: Int, answersCount: Int) { // не вызывается
+        delegate?.sendData(score: score, answersCount: answersCount)
+    }
     
-    var date = Date()
-    var score = Int()
-    var correctAnswers = Int()
-    var questionCount = Int()
+    weak var delegate: DataDelegate?
     
-    let questionBase = QuestionsBase()
+    var date: Date = Date()
+    var score: Int = 0
+    var correctAnswers: Int = 0
+    var questionCount: Int = 0
     
     private enum CodindKeys: CodingKey {
         case date
@@ -29,58 +27,8 @@ class GameSession {
         case correctAnswers
         case questionCount
     }
-    
-    var question = String()
-    var correctAnswer = String()
-    var answers = [String]()
-    var questionNumber = String()
-    var round = 1
-    var gameOver = false
+}
 
-    func saveData(round: Int){
-        self.delegate?.saveData(round: round)
-    }
-    
-    func game(){
-        let roundQuestions = questionBase.setThePullOfQuestions(round: round)
-        for (index, element) in roundQuestions.enumerated() {
-            score = questionBase.prize[round - 1]
-            if index == 0 {
-                questionNumber = "Вопрос \(round):"
-                question = element.key
-                correctAnswer = element.value[0]
-                answers = element.value.shuffled()
-            }
-        }
-    }
-
-    func checkAnswer(answer: String){
-        if answer.contains(correctAnswer) {
-            correctAnswers += 1
-            sleep(1)
-            if round < 15 {
-                round += 1
-                game()
-            } else {
-                win()
-            }
-        } else {
-            sleep(1)
-            lose()
-        }
-    }
-    
-    func win() {
-        score = questionBase.prize[round]
-        questionNumber = "Вы стали миллионером!"
-        answers = ["","","",""]
-        question = "Верных ответов: \(round) из 15\nВаш выигрыш: \(questionBase.prize[round]) рублей"
-        gameOver = true
-    }
-    
-    func lose() {
-        questionNumber = "Вы проиграли!"
-        question = "Верных ответов: \(round - 1) из 15\nВаш выигрыш: \(questionBase.prize[round - 1]) рублей"
-        gameOver = true
-    }
+protocol DataDelegate: class {
+    func sendData(score: Int, answersCount: Int)
 }

@@ -38,7 +38,6 @@ final class RecordsCaretaker {
         }
     }
     func clearRecords() {
-        //guard var data = UserDefaults.standard.data(forKey: key) else { return }
         UserDefaults.standard.removeObject(forKey: key)
     }
 }

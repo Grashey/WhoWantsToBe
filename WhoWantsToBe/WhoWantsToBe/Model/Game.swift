@@ -14,4 +14,5 @@ class Game {
     private init(){}
     
     var result = GameSession()
+    
 }
