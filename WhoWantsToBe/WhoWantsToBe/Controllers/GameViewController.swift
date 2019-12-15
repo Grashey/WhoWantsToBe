@@ -20,7 +20,7 @@ class GameViewController: UIViewController, DataDelegate {
 
     @IBAction func isPressedButton(_ sender: UIButton) {
         checkAnswer(answer: sender.titleLabel!.text!)
-        delegate?.sendData(score: score, answersCount: correctAnswersCount)
+        sendData(score: score, answersCount: correctAnswersCount)
         gameView.configure(question: question, questionTitle: questionTitle, answers: answers, score: score, isGameOver: isGameOver)
     }
     
@@ -36,10 +36,19 @@ class GameViewController: UIViewController, DataDelegate {
     var isGameOver = false
     var score = Int()
     var correctAnswersCount = 0
+    var gameMode: GameMode = Game.instance.gameMode
+    private var gameModeStrategy: GameModeStrategy {
+        switch self.gameMode {
+            case .standart:
+            return StandartGameModeStrategy()
+            case .random:
+            return RandomGameModeStrategy()
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+      
         gameSession.delegate = self
         Game.instance.result = GameSession()
         setRound()
@@ -68,17 +77,18 @@ class GameViewController: UIViewController, DataDelegate {
     }
     
     func setRound(){
-         let roundQuestions = questionBase.setThePullOfQuestions(round: round)
-         for (index, element) in roundQuestions.enumerated() {
-             score = questionBase.prize[round - 1]
-             if index == 0 {
-                 questionTitle = "Вопрос \(round):"
-                 question = element.key
-                 correctAnswer = element.value[0]
-                 answers = element.value.shuffled()
-             }
-         }
-     }
+        let questionNumber = gameModeStrategy.questionsQueue()
+        let roundQuestions = questionBase.setThePullOfQuestions(round: questionNumber[round-1])
+        for (index, element) in roundQuestions.enumerated() {
+            score = questionBase.prize[round - 1]
+            if index == 0 {
+                questionTitle = "Вопрос \(round):"
+                question = element.key
+                correctAnswer = element.value[0]
+                answers = element.value.shuffled()
+            }
+        }
+    }
     
     func sendData(score: Int, answersCount: Int) {
         gameSession.date = Date()

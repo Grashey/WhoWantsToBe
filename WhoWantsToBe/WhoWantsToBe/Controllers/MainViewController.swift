@@ -11,9 +11,10 @@ import UIKit
 class MainViewController: UIViewController {
     
     @IBAction func newGame(_ sender: UIButton) {
-
     }
     @IBAction func records(_ sender: UIButton) {
+    }
+    @IBAction func settings(_ sender: UIButton) {
     }
     
     @IBAction func prepareForUnwind(segue: UIStoryboardSegue) {

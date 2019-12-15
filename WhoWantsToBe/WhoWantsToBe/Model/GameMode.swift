@@ -7,3 +7,8 @@
 //
 
 import Foundation
+
+enum GameMode {
+    case standart
+    case random
+}

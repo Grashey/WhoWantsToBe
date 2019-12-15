@@ -21,7 +21,7 @@ class GameSession {
     var correctAnswers: Int = 0
     var questionCount: Int = 0
     
-    private enum CodindKeys: CodingKey {
+    private enum CodindKeys: CodingKey { //Codable не работает из-за делегата
         case date
         case score
         case correctAnswers
