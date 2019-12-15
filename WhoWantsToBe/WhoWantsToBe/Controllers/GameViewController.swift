@@ -77,8 +77,8 @@ class GameViewController: UIViewController, DataDelegate {
     }
     
     func setRound(){
-        let questionNumber = gameModeStrategy.questionsQueue()
-        let roundQuestions = questionBase.setThePullOfQuestions(round: questionNumber[round-1])
+        let questionsQueue = gameModeStrategy.questionsQueue()
+        let roundQuestions = questionBase.setThePullOfQuestions(round: questionsQueue[round-1])
         for (index, element) in roundQuestions.enumerated() {
             score = questionBase.prize[round - 1]
             if index == 0 {
