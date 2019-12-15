@@ -32,7 +32,7 @@ class GameViewController: UIViewController, DataDelegate {
     var correctAnswer = String()
     var answers = [String]()
     var questionTitle = String()
-    var round = 1
+    var round = Observable<Int>(1)
     var isGameOver = false
     var score = Int()
     var correctAnswersCount = 0
@@ -59,30 +59,30 @@ class GameViewController: UIViewController, DataDelegate {
         sleep(1)
         if answer.contains(correctAnswer) {
             correctAnswersCount += 1
-            if round < 15 {
-                round += 1
+            if round.value < 15 {
+                round.value += 1
                 setRound()
             } else {
-                score = questionBase.prize[round]
+                score = questionBase.prize[round.value]
                 questionTitle = "Вы стали миллионером!"
                 answers = ["","","",""]
-                question = "Верных ответов: \(round) из 15\nВаш выигрыш: \(questionBase.prize[round]) рублей"
+                question = "Верных ответов: \(round.value) из 15\nВаш выигрыш: \(questionBase.prize[round.value]) рублей"
                 isGameOver = true
             }
         } else {
             questionTitle = "Вы проиграли!"
-            question = "Верных ответов: \(round - 1) из 15\nВаш выигрыш: \(questionBase.prize[round - 1]) рублей"
+            question = "Верных ответов: \(round.value - 1) из 15\nВаш выигрыш: \(questionBase.prize[round.value - 1]) рублей"
             isGameOver = true
         }
     }
     
     func setRound(){
         let questionsQueue = gameModeStrategy.questionsQueue()
-        let roundQuestions = questionBase.setThePullOfQuestions(round: questionsQueue[round-1])
+        let roundQuestions = questionBase.setThePullOfQuestions(round: questionsQueue[round.value-1])
         for (index, element) in roundQuestions.enumerated() {
-            score = questionBase.prize[round - 1]
+            score = questionBase.prize[round.value - 1]
             if index == 0 {
-                questionTitle = "Вопрос \(round):"
+                questionTitle = "Вопрос \(round.value):"
                 question = element.key
                 correctAnswer = element.value[0]
                 answers = element.value.shuffled()
@@ -94,6 +94,6 @@ class GameViewController: UIViewController, DataDelegate {
         gameSession.date = Date()
         gameSession.score = score
         gameSession.correctAnswers = answersCount
-        gameSession.questionCount = 15
+        gameSession.questionCount = round.value
     }
 }

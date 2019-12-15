@@ -32,8 +32,5 @@ class SettingsViewController: UIViewController {
         super.viewDidDisappear(animated)
         
         Game.instance.gameMode = selectedMode
-        print(selectedMode)
-        print(questionQueue.selectedSegmentIndex)
     }
-
 }
