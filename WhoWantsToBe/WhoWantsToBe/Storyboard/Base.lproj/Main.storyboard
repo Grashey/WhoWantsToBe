@@ -125,7 +125,7 @@
         <scene sceneID="Ogd-UH-YPV">
             <objects>
                 <viewController id="QHI-U5-gzv" customClass="NewQuestionController" customModule="WhoWantsToBe" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="QS1-8m-phO">
+                    <view key="view" contentMode="scaleToFill" id="QS1-8m-phO" customClass="NewQuestionView" customModule="WhoWantsToBe" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -180,12 +180,15 @@
                             <constraint firstItem="zPA-Nb-i9G" firstAttribute="top" secondItem="9Vs-yB-5bf" secondAttribute="bottom" constant="30" id="vin-YA-GfJ"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Zbf-uS-CBS"/>
+                        <connections>
+                            <outlet property="newQuestionTableView" destination="9Vs-yB-5bf" id="tTs-qB-IjC"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" title="Новый вопрос" id="ADC-EN-R97">
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="4X3-W4-0FR"/>
                     </navigationItem>
                     <connections>
-                        <outlet property="newQuestionTableView" destination="9Vs-yB-5bf" id="Z2m-D6-1DC"/>
+                        <outlet property="newQuestionView" destination="QS1-8m-phO" id="hG9-4p-Xdc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rJP-WE-iIU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

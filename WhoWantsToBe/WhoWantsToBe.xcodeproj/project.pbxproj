@@ -23,6 +23,7 @@
 		B6C730D323A7C04900B5F2AE /* UserQuestionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C730D223A7C04900B5F2AE /* UserQuestionViewCell.swift */; };
 		B6C730D523A7D93F00B5F2AE /* NewQuestionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C730D423A7D93F00B5F2AE /* NewQuestionController.swift */; };
 		B6C730D723A7DB3C00B5F2AE /* NewQuestionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C730D623A7DB3C00B5F2AE /* NewQuestionViewCell.swift */; };
+		B6C730D923A7E8C000B5F2AE /* NewQuestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C730D823A7E8C000B5F2AE /* NewQuestionView.swift */; };
 		B6CB6CC323A1801700905B6D /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6CB6CC223A1801700905B6D /* GameView.swift */; };
 		B6D505FD239D9792000FB391 /* RecordsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D505FC239D9792000FB391 /* RecordsHeaderView.swift */; };
 		B6FCAF182396904300C3F48D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FCAF172396904300C3F48D /* AppDelegate.swift */; };
@@ -53,6 +54,7 @@
 		B6C730D223A7C04900B5F2AE /* UserQuestionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserQuestionViewCell.swift; sourceTree = "<group>"; };
 		B6C730D423A7D93F00B5F2AE /* NewQuestionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewQuestionController.swift; sourceTree = "<group>"; };
 		B6C730D623A7DB3C00B5F2AE /* NewQuestionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewQuestionViewCell.swift; sourceTree = "<group>"; };
+		B6C730D823A7E8C000B5F2AE /* NewQuestionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewQuestionView.swift; sourceTree = "<group>"; };
 		B6CB6CC223A1801700905B6D /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		B6D505FC239D9792000FB391 /* RecordsHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordsHeaderView.swift; sourceTree = "<group>"; };
 		B6FCAF142396904300C3F48D /* WhoWantsToBe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WhoWantsToBe.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -118,6 +120,7 @@
 				B6CB6CC223A1801700905B6D /* GameView.swift */,
 				B6C730D223A7C04900B5F2AE /* UserQuestionViewCell.swift */,
 				B6C730D623A7DB3C00B5F2AE /* NewQuestionViewCell.swift */,
+				B6C730D823A7E8C000B5F2AE /* NewQuestionView.swift */,
 				B6A55437239B31F400476C8D /* RecordsViewCell.swift */,
 			);
 			path = View;
@@ -263,6 +266,7 @@
 				B6C730D523A7D93F00B5F2AE /* NewQuestionController.swift in Sources */,
 				B6C730CA23A66A9A00B5F2AE /* RandomGameModeStrategy.swift in Sources */,
 				B6FCAF2F2397C66A00C3F48D /* GameViewController.swift in Sources */,
+				B6C730D923A7E8C000B5F2AE /* NewQuestionView.swift in Sources */,
 				B6CB6CC323A1801700905B6D /* GameView.swift in Sources */,
 				B6A55436239B243D00476C8D /* Game.swift in Sources */,
 			);
