@@ -12,6 +12,8 @@ class SettingsViewController: UIViewController {
 
     @IBOutlet weak var questionQueue: UISegmentedControl!
     
+    let rec = RecordsCaretaker()
+    
     private var selectedMode: GameMode {
         switch self.questionQueue.selectedSegmentIndex {
         case 0:
@@ -26,11 +28,21 @@ class SettingsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let savedSettings = rec.loadSettings()
+        if !savedSettings.isEmpty {
+            if savedSettings[0].gameMode == .standart {
+                questionQueue.selectedSegmentIndex = 0
+            } else {
+                questionQueue.selectedSegmentIndex = 1
+            }
+        }
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         
         Game.instance.gameMode = selectedMode
+        let setup = Settings(gameMode: selectedMode)
+        rec.saveSettings(settings: [setup])
     }
 }

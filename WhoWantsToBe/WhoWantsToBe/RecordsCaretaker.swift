@@ -13,21 +13,22 @@ final class RecordsCaretaker {
     private let encoder = JSONEncoder()
     private let decoder = JSONDecoder()
     
-    private let key = "records"
+    private let recordskey = "records"
+    private let settingskey = "settings"
     
-    func save(records: [Record]) {
+    func saveRecord(records: [Record]) {
         let allRecords = retrieveRecords()
         let newRecords = allRecords + records
         do {
             let data = try self.encoder.encode(newRecords)
-            UserDefaults.standard.set(data, forKey: key)
+            UserDefaults.standard.set(data, forKey: recordskey)
         } catch {
             print(error)
         }
     }
     
     func retrieveRecords() -> [Record] {
-        guard let data = UserDefaults.standard.data(forKey: key) else {
+        guard let data = UserDefaults.standard.data(forKey: recordskey) else {
             return []
         }
         do {
@@ -38,7 +39,28 @@ final class RecordsCaretaker {
         }
     }
     func clearRecords() {
-        UserDefaults.standard.removeObject(forKey: key)
+        UserDefaults.standard.removeObject(forKey: recordskey)
+    }
+    
+    func saveSettings(settings: [Settings]) {
+        do {
+            let data = try self.encoder.encode(settings)
+            UserDefaults.standard.set(data, forKey: settingskey)
+        } catch {
+            print(error)
+        }
+    }
+    
+    func loadSettings() -> [Settings] {
+        guard let data = UserDefaults.standard.data(forKey: settingskey) else {
+            return []
+        }
+        do {
+            return try self.decoder.decode([Settings].self, from: data)
+        } catch {
+            print(error)
+            return []
+        }
     }
 }
 
@@ -49,5 +71,9 @@ struct Record: Codable {
     var correctAnswers: Int
     var questionCount: Int
     var hints: String
+}
+
+struct Settings: Codable {
+    var gameMode: GameMode
 }
 

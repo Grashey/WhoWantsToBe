@@ -13,9 +13,8 @@ class GameViewController: UIViewController, DataDelegate {
     @IBOutlet var gameView: GameView!
     
     @IBAction func gameOver(_ sender: UIButton) {
-        let rec = RecordsCaretaker()
         let lastResult = Record(date: gameSession.date, score: gameSession.score, correctAnswers: gameSession.correctAnswers, questionCount: gameSession.questionCount, hints: "0 / 3")
-        rec.save(records: [lastResult])
+        rec.saveRecord(records: [lastResult])
     }
 
     @IBAction func isPressedButton(_ sender: UIButton) {
@@ -24,18 +23,10 @@ class GameViewController: UIViewController, DataDelegate {
         gameView.configure(question: question, questionTitle: questionTitle, answers: answers, score: score, isGameOver: isGameOver)
     }
     
+    let rec = RecordsCaretaker()
     let questionBase = QuestionsBase()
     var delegate: DataDelegate?
     var gameSession = GameSession()
-    
-    var question = String()
-    var correctAnswer = String()
-    var answers = [String]()
-    var questionTitle = String()
-    var round = Observable<Int>(1)
-    var isGameOver = false
-    var score = Int()
-    var correctAnswersCount = 0
     var gameMode: GameMode = Game.instance.gameMode
     private var gameModeStrategy: GameModeStrategy {
         switch self.gameMode {
@@ -45,12 +36,25 @@ class GameViewController: UIViewController, DataDelegate {
             return RandomGameModeStrategy()
         }
     }
+    var question = String()
+    var correctAnswer = String()
+    var answers = [String]()
+    var questionTitle = String()
+    var round = Observable<Int>(1)
+    var isGameOver = false
+    var score = Int()
+    var correctAnswersCount = 0
+    var questionsQueue = [Int]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
       
         gameSession.delegate = self
         Game.instance.result = GameSession()
+        if !rec.loadSettings().isEmpty {
+            Game.instance.gameMode = rec.loadSettings()[0].gameMode
+        }
+        questionsQueue = gameModeStrategy.questionsQueue()
         setRound()
         gameView.configure(question: question, questionTitle: questionTitle, answers: answers, score: score, isGameOver: isGameOver)
     }
@@ -77,7 +81,6 @@ class GameViewController: UIViewController, DataDelegate {
     }
     
     func setRound(){
-        let questionsQueue = gameModeStrategy.questionsQueue()
         let roundQuestions = questionBase.setThePullOfQuestions(round: questionsQueue[round.value-1])
         for (index, element) in roundQuestions.enumerated() {
             score = questionBase.prize[round.value - 1]

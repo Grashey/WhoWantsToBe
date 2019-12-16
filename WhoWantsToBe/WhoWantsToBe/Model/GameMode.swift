@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum GameMode {
+enum GameMode: Int, Codable {
     case standart
     case random
 }
