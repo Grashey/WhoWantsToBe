@@ -30,9 +30,9 @@ class NewQuestionController: UIViewController, UITableViewDelegate, UITableViewD
             builder.setQuestion(String(cell.questionTextField.text ?? ""))
             builder.setAnswers(answers)
             let question = builder.build().userQuestion
-            let base = Questions(questions: question)
+            let base = Question(questions: question)
             let rec = UserQuestionCaretaker()
-            rec.saveQuestions(questions: [base])
+            rec.addQuestions(questions: [base])
         }
         
     }

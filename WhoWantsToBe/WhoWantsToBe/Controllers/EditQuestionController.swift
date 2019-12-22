@@ -9,17 +9,28 @@
 import UIKit
 
 class EditQuestionController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-        
+      
+    var index = Int()
+    let rec = UserQuestionCaretaker()
+    var data: [Question] = []
+    
     @IBOutlet var questionView: QuestionView!
 
     @IBAction func saveQuestion(_ sender: Any) {
-     
+        let index = IndexPath(row:0, section: 0)
+        let cell = questionView.questionTableView.cellForRow(at:index) as! QuestionViewCell
+        var answers: [String] = []
+        for i in 0..<cell.answersTextFields.count {
+            answers.append(String(cell.answersTextFields[i].text ?? ""))
+        }
+        let builder = NewQuestionBuilder()
+        builder.setQuestion(String(cell.questionTextField.text ?? ""))
+        builder.setAnswers(answers)
+        let question = builder.build().userQuestion
+        self.data[self.index].questions = question
+        rec.saveQuestions(questions: self.data)
     }
-    
-    var index = Int()
-    let rec = UserQuestionCaretaker()
-    var data: [Questions] = []
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         

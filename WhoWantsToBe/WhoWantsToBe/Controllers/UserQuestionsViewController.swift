@@ -11,12 +11,11 @@ import UIKit
 class UserQuestionsViewController: UITableViewController {
 
     let rec = UserQuestionCaretaker()
-    var data: [Questions] = []
+    var data: [Question] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //data = rec.loadQuestions()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -57,7 +56,10 @@ class UserQuestionsViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
+            _ = self.data.remove(at: indexPath.row)
+            rec.saveQuestions(questions: self.data)
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
 }
+
