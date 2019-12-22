@@ -10,8 +10,6 @@ import UIKit
 
 class NewQuestionController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    let userData = UserQuestionsBase()
-    var base: [String:[String]] = [:]
     var questionCount = 1
     
     @IBOutlet var newQuestionView: NewQuestionView!
@@ -32,8 +30,11 @@ class NewQuestionController: UIViewController, UITableViewDelegate, UITableViewD
             builder.setQuestion(String(cell.questionTextField.text ?? ""))
             builder.setAnswers(answers)
             let question = builder.build().userQuestion
-            base.merge(question) { (_, new) in new }
+            let base = Questions(questions: question)
+            let rec = UserQuestionCaretaker()
+            rec.saveQuestions(questions: [base])
         }
+        
     }
     
     override func viewDidLoad() {

@@ -51,8 +51,9 @@ class GameViewController: UIViewController, DataDelegate {
       
         gameSession.delegate = self
         Game.instance.result = GameSession()
-        if !rec.loadSettings().isEmpty {
-            Game.instance.gameMode = rec.loadSettings()[0].gameMode
+        let settingsRec = SettingsCaretaker()
+        if !settingsRec.loadSettings().isEmpty {
+            Game.instance.gameMode = settingsRec.loadSettings()[0].gameMode
         }
         questionsQueue = gameModeStrategy.questionsQueue()
         setRound()

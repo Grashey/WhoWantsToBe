@@ -12,7 +12,7 @@ class SettingsViewController: UIViewController {
 
     @IBOutlet weak var questionQueue: UISegmentedControl!
     
-    let rec = RecordsCaretaker()
+    let rec = SettingsCaretaker()
     
     private var selectedMode: GameMode {
         switch self.questionQueue.selectedSegmentIndex {

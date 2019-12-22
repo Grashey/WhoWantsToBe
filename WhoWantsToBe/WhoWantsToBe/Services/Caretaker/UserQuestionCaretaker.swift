@@ -15,16 +15,18 @@ final class UserQuestionCaretaker {
     
     private let questionsKey = "questions"
     
-    func saveQuestions(settings: [Questions]) {
+    func saveQuestions(questions: [Questions]) {
+        let allQuestions = loadQuestions()
+        let newQuestions = allQuestions + questions
         do {
-            let data = try self.encoder.encode(settings)
+            let data = try self.encoder.encode(newQuestions)
             UserDefaults.standard.set(data, forKey: questionsKey)
         } catch {
             print(error)
         }
     }
     
-    func loadSettings() -> [Questions] {
+    func loadQuestions() -> [Questions] {
         guard let data = UserDefaults.standard.data(forKey: questionsKey) else {
             return []
         }

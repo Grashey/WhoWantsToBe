@@ -29,8 +29,9 @@ class UserQuestionViewCell: UITableViewCell {
     
     func heightForCell(with data: [String:[String]]) -> CGFloat {
         var totalHeight: CGFloat = 0
+        let indent: CGFloat = 10
         var answerTextHeight: CGFloat = 0
-        let questionFont = UIFont.systemFont(ofSize: 16)
+        let questionFont = UIFont.systemFont(ofSize: 15)
         let answerFont = UIFont.systemFont(ofSize: 11)
         let maxWidth = contentView.bounds.width
         for element in data {
@@ -45,7 +46,7 @@ class UserQuestionViewCell: UITableViewCell {
                     answerTextHeight = textHeight
                 }
             }
-            totalHeight = textHeight + answerTextHeight
+            totalHeight = textHeight + answerTextHeight + indent
         }
         return totalHeight
     }
