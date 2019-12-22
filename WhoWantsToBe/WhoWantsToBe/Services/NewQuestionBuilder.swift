@@ -28,13 +28,3 @@ class NewQuestionBuilder {
         self.answers += answers
     }
 }
-
-class QuestionSaver {
-
-    func saveQuestion() -> NewQuestion {
-        let builder = NewQuestionBuilder()
-        builder.setQuestion("Цвет неба?")
-        builder.setAnswers(["синий", "красный", "ванильный", "фиолетовый"])
-        return builder.build()
-    }
-}
