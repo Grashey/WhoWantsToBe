@@ -26,8 +26,6 @@
         <!--Вопросы пользователя-->
         <scene sceneID="HOW-mE-jDO">
             <objects>
-                <exit id="yMH-jJ-AQ1" userLabel="Exit" sceneMemberID="exit"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="6tU-4J-bu4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <tableViewController id="vZG-FP-eOi" customClass="UserQuestionsViewController" customModule="WhoWantsToBe" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="PS6-Pa-znc">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
@@ -118,6 +116,8 @@
                         </barButtonItem>
                     </navigationItem>
                 </tableViewController>
+                <exit id="yMH-jJ-AQ1" userLabel="Exit" sceneMemberID="exit"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6tU-4J-bu4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1967" y="-625"/>
         </scene>
@@ -129,27 +129,96 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="9Vs-yB-5bf">
-                                <rect key="frame" x="20" y="98" width="374" height="240"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="9Vs-yB-5bf">
+                                <rect key="frame" x="20" y="98" width="374" height="700"/>
                                 <color key="backgroundColor" systemColor="opaqueSeparatorColor" red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="240" id="8HZ-Mq-2KU"/>
+                                    <constraint firstAttribute="height" constant="700" id="yBq-zF-Jeg"/>
                                 </constraints>
-                                <color key="sectionIndexBackgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="sectionIndexBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="sectionIndexTrackingBackgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="NewQuestionViewCell" id="7ye-FH-qu6" customClass="NewQuestionViewCell" customModule="WhoWantsToBe" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="374" height="43.5"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="NewQuestionViewCell" rowHeight="222" id="7ye-FH-qu6" customClass="NewQuestionViewCell" customModule="WhoWantsToBe" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="374" height="222"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="7ye-FH-qu6" id="yI0-wY-HET">
-                                            <rect key="frame" x="0.0" y="0.0" width="374" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="374" height="222"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Введите вопрос:" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="PPx-E5-GTB">
+                                                    <rect key="frame" x="0.0" y="0.0" width="374" height="34"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="34" id="fXL-oh-1Kb"/>
+                                                    </constraints>
+                                                    <nil key="textColor"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Правильный ответ:" textAlignment="natural" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="grd-69-WiO">
+                                                    <rect key="frame" x="0.0" y="34" width="374" height="34"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="34" id="gc3-DI-RaU"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="1ый альтернативный ответ:" textAlignment="natural" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="cHD-3s-aEj">
+                                                    <rect key="frame" x="0.0" y="68" width="374" height="34"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="34" id="kxh-ik-afF"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="2ой альтернативный ответ:" textAlignment="natural" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="2la-cW-Q8B">
+                                                    <rect key="frame" x="0.0" y="102" width="374" height="34"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="34" id="4MW-d4-VmU"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="3ий альтернативный ответ:" textAlignment="natural" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="y6i-QG-bEC">
+                                                    <rect key="frame" x="0.0" y="136" width="374" height="34"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="34" id="MHC-Pi-n9O"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
+                                            </subviews>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstItem="grd-69-WiO" firstAttribute="top" secondItem="PPx-E5-GTB" secondAttribute="bottom" id="4oK-yh-vCt"/>
+                                                <constraint firstItem="cHD-3s-aEj" firstAttribute="top" secondItem="grd-69-WiO" secondAttribute="bottom" id="6pa-06-GGD"/>
+                                                <constraint firstItem="grd-69-WiO" firstAttribute="centerX" secondItem="yI0-wY-HET" secondAttribute="centerX" id="D5d-ok-2Y2"/>
+                                                <constraint firstItem="PPx-E5-GTB" firstAttribute="top" secondItem="yI0-wY-HET" secondAttribute="top" id="DcN-sU-9iY"/>
+                                                <constraint firstItem="2la-cW-Q8B" firstAttribute="width" secondItem="yI0-wY-HET" secondAttribute="width" id="ED6-7Q-qZS"/>
+                                                <constraint firstItem="grd-69-WiO" firstAttribute="width" secondItem="yI0-wY-HET" secondAttribute="width" id="Elp-8r-CPG"/>
+                                                <constraint firstItem="PPx-E5-GTB" firstAttribute="width" secondItem="yI0-wY-HET" secondAttribute="width" id="Joa-RW-FUi"/>
+                                                <constraint firstItem="PPx-E5-GTB" firstAttribute="centerX" secondItem="yI0-wY-HET" secondAttribute="centerX" id="NFj-vY-eaG"/>
+                                                <constraint firstItem="cHD-3s-aEj" firstAttribute="centerX" secondItem="yI0-wY-HET" secondAttribute="centerX" id="Nsg-0Z-h5H"/>
+                                                <constraint firstItem="2la-cW-Q8B" firstAttribute="top" secondItem="cHD-3s-aEj" secondAttribute="bottom" id="TUw-yl-jIM"/>
+                                                <constraint firstItem="2la-cW-Q8B" firstAttribute="centerX" secondItem="yI0-wY-HET" secondAttribute="centerX" id="WRm-bR-EpO"/>
+                                                <constraint firstItem="cHD-3s-aEj" firstAttribute="width" secondItem="yI0-wY-HET" secondAttribute="width" id="bru-BJ-mst"/>
+                                                <constraint firstItem="y6i-QG-bEC" firstAttribute="centerX" secondItem="yI0-wY-HET" secondAttribute="centerX" id="co2-fC-zQC"/>
+                                                <constraint firstItem="2la-cW-Q8B" firstAttribute="bottom" secondItem="y6i-QG-bEC" secondAttribute="top" id="ngS-RW-kuR"/>
+                                                <constraint firstItem="y6i-QG-bEC" firstAttribute="width" secondItem="yI0-wY-HET" secondAttribute="width" id="q0M-Ll-z8Y"/>
+                                            </constraints>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <connections>
+                                            <outlet property="questionTextField" destination="PPx-E5-GTB" id="n8L-cf-vd3"/>
+                                            <outletCollection property="answersTextFields" destination="grd-69-WiO" collectionClass="NSMutableArray" id="sVE-wU-0sl"/>
+                                            <outletCollection property="answersTextFields" destination="cHD-3s-aEj" collectionClass="NSMutableArray" id="CEG-zl-SH5"/>
+                                            <outletCollection property="answersTextFields" destination="2la-cW-Q8B" collectionClass="NSMutableArray" id="8w6-Mf-GnV"/>
+                                            <outletCollection property="answersTextFields" destination="y6i-QG-bEC" collectionClass="NSMutableArray" id="wJX-a8-Z2n"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zPA-Nb-i9G">
-                                <rect key="frame" x="274" y="368" width="120" height="30"/>
+                                <rect key="frame" x="274" y="828" width="120" height="30"/>
                                 <color key="backgroundColor" systemColor="opaqueSeparatorColor" red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="PzI-Xa-gHh"/>
@@ -185,7 +254,11 @@
                         </connections>
                     </view>
                     <navigationItem key="navigationItem" title="Новый вопрос" id="ADC-EN-R97">
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="4X3-W4-0FR"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="4X3-W4-0FR">
+                            <connections>
+                                <action selector="saveQuestions:" destination="QHI-U5-gzv" id="ocs-4V-mCR"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="newQuestionView" destination="QS1-8m-phO" id="hG9-4p-Xdc"/>

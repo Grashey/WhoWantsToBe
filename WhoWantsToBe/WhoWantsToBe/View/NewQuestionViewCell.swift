@@ -9,16 +9,21 @@
 import UIKit
 
 class NewQuestionViewCell: UITableViewCell {
-
+    
+    @IBOutlet weak var questionTextField: UITextField!
+    @IBOutlet var answersTextFields: [UITextField]!
+    
+    let textFont = UIFont.systemFont(ofSize: 14)
+    let controller = NewQuestionController()
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    
+    func heightForCell() -> CGFloat {
+        let questionTextFieldHeioght: CGFloat = 34
+        let answersTextFieldsHeight: CGFloat = 34 * 4
+        
+        return answersTextFieldsHeight + questionTextFieldHeioght
     }
-
 }
