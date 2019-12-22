@@ -13,6 +13,8 @@ class UserQuestionViewCell: UITableViewCell {
     @IBOutlet weak var questionLabel: UILabel!
     @IBOutlet var answerLabels: [UILabel]!
     
+    var indexPath = IndexPath()
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
@@ -29,10 +31,10 @@ class UserQuestionViewCell: UITableViewCell {
     
     func heightForCell(with data: [String:[String]]) -> CGFloat {
         var totalHeight: CGFloat = 0
-        let indent: CGFloat = 10
+        let indent: CGFloat = 15
         var answerTextHeight: CGFloat = 0
-        let questionFont = UIFont.systemFont(ofSize: 15)
-        let answerFont = UIFont.systemFont(ofSize: 11)
+        let questionFont = UIFont.systemFont(ofSize: 14)
+        let answerFont = UIFont.systemFont(ofSize: 10)
         let maxWidth = contentView.bounds.width
         for element in data {
             let question = element.key

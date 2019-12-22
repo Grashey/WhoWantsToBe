@@ -1,51 +1,36 @@
 //
-//  NewQuestionController.swift
+//  EditQuestionController.swift
 //  WhoWantsToBe
 //
-//  Created by Aleksandr Fetisov on 16.12.2019.
+//  Created by Aleksandr Fetisov on 22.12.2019.
 //  Copyright © 2019 Aleksandr Fetisov. All rights reserved.
 //
 
 import UIKit
 
-class NewQuestionController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    
-    var questionCount = 1
-    
-    @IBOutlet var newQuestionView: QuestionView!
-    @IBAction func addQuestion(_ sender: Any) {
-        questionCount += 1
-        newQuestionView.questionTableView.reloadData()
-    }
-    
-    @IBAction func saveQuestions(_ sender: Any) {
-        for i in 0..<questionCount {
-            let index = IndexPath(row:0, section: i)
-            let cell = newQuestionView.questionTableView.cellForRow(at:index) as! QuestionViewCell
-            var answers: [String] = []
-            for i in 0..<cell.answersTextFields.count {
-                answers.append(String(cell.answersTextFields[i].text ?? ""))
-            }
-            let builder = NewQuestionBuilder()
-            builder.setQuestion(String(cell.questionTextField.text ?? ""))
-            builder.setAnswers(answers)
-            let question = builder.build().userQuestion
-            let base = Questions(questions: question)
-            let rec = UserQuestionCaretaker()
-            rec.saveQuestions(questions: [base])
-        }
+class EditQuestionController: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
+    @IBOutlet var questionView: QuestionView!
+
+    @IBAction func saveQuestion(_ sender: Any) {
+     
     }
+    
+    var index = Int()
+    let rec = UserQuestionCaretaker()
+    var data: [Questions] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.newQuestionView.questionTableView.delegate = self
-        self.newQuestionView.questionTableView.dataSource = self
+        data = rec.loadQuestions()
+        
+        self.questionView.questionTableView.delegate = self
+        self.questionView.questionTableView.dataSource = self
         
         let tapGR = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
         tapGR.numberOfTapsRequired = 1
-        newQuestionView.addGestureRecognizer(tapGR)
+        questionView.addGestureRecognizer(tapGR)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -66,24 +51,21 @@ class NewQuestionController: UIViewController, UITableViewDelegate, UITableViewD
         let keyboardSize = (info?.value(forKey: UIResponder.keyboardFrameEndUserInfoKey) as! NSValue).cgRectValue.size
         
         let contentInsets = UIEdgeInsets(top: 0, left: 0, bottom: keyboardSize.height + 10, right: 0)
-        newQuestionView.questionTableView.contentInset = contentInsets
-        newQuestionView.questionTableView.scrollIndicatorInsets = contentInsets
+        questionView.questionTableView.contentInset = contentInsets
+        questionView.questionTableView.scrollIndicatorInsets = contentInsets
     }
     
     @objc private func keyboardWasHidden(notification: Notification){
         let contentInsets = UIEdgeInsets.zero
-        newQuestionView.questionTableView.contentInset = contentInsets
-        newQuestionView.questionTableView.scrollIndicatorInsets = contentInsets
+        questionView.questionTableView.contentInset = contentInsets
+        questionView.questionTableView.scrollIndicatorInsets = contentInsets
     }
     
     @objc private func hideKeyboard(){
-        self.newQuestionView.endEditing(true)
+        self.questionView.endEditing(true)
     }
     
     // MARK: TableView Methods
-    func numberOfSections(in tableView: UITableView) -> Int {
-        questionCount
-    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
@@ -95,7 +77,7 @@ class NewQuestionController: UIViewController, UITableViewDelegate, UITableViewD
         
         let label = UILabel(frame: CGRect(x: 10, y: 5, width: tableView.frame.size.width, height: 15))
         label.font = UIFont.systemFont(ofSize: 12)
-        label.text = "Вопрос \(section + 1):"
+        label.text = "Нажмите кнопку \"Save\" по завершению редактирования"
         header.addSubview(label)
         
         return header
@@ -103,6 +85,8 @@ class NewQuestionController: UIViewController, UITableViewDelegate, UITableViewD
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: QuestionViewCell.reuseID, for: indexPath) as! QuestionViewCell
+        let data = self.data[index].questions
+        cell.configure(with: data)
         return cell
     }
     

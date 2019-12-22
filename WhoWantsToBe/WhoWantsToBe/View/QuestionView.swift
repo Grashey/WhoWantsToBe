@@ -1,5 +1,5 @@
 //
-//  NewQuestionView.swift
+//  QuestionView.swift
 //  WhoWantsToBe
 //
 //  Created by Aleksandr Fetisov on 16.12.2019.
@@ -8,9 +8,9 @@
 
 import UIKit
 
-class NewQuestionView: UIView {
+class QuestionView: UIView {
 
-    @IBOutlet weak var newQuestionTableView: UITableView!
+    @IBOutlet weak var questionTableView: UITableView!
     
     override class func awakeFromNib() {
         super.awakeFromNib()
