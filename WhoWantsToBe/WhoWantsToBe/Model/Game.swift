@@ -14,4 +14,6 @@ class Game {
     private init(){}
     
     var result = GameSession()
+    var gameMode = GameMode.standart
+    
 }

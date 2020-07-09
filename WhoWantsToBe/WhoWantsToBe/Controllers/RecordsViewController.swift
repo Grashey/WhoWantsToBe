@@ -37,22 +37,26 @@ class RecordsViewController: UITableViewController {
         
         let header = RecordsHeaderView()
         
-        let labelWidth = tableView.frame.size.width / 4
+        let labelWidth = tableView.frame.size.width / 5
         let labelFont = UIFont.systemFont(ofSize: 10)
         
         let labelOne = UILabel(frame: CGRect(x: 0, y: 5, width: labelWidth, height: 18))
+        labelOne.textAlignment = .center
         labelOne.font = labelFont
         labelOne.text = "rounds"
         
         let labelTwo = UILabel(frame: CGRect(x: labelWidth , y: 5 , width: labelWidth, height: 18))
+        labelTwo.textAlignment = .center
         labelTwo.font = labelFont
         labelTwo.text = "money"
         
         let labelThree = UILabel(frame: CGRect(x: labelWidth * 2 , y: 5 , width: labelWidth, height: 18))
+        labelThree.textAlignment = .center
         labelThree.font = labelFont
         labelThree.text = "hints"
         
-        let labelFour = UILabel(frame: CGRect(x: labelWidth * 3 , y: 5 , width: labelWidth, height: 18))
+        let labelFour = UILabel(frame: CGRect(x: labelWidth * 3 , y: 5 , width: labelWidth * 2, height: 18))
+        labelFour.textAlignment = .center
         labelFour.font = labelFont
         labelFour.text = "date"
         
@@ -62,5 +66,8 @@ class RecordsViewController: UITableViewController {
         header.addSubview(labelFour)
         
         return header
+    }
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 42
     }
 }

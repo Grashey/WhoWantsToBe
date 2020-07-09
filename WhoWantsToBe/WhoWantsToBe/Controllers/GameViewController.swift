@@ -8,120 +8,96 @@
 
 import UIKit
 
-class GameViewController: UIViewController {
+class GameViewController: UIViewController, DataDelegate {
+
+    @IBOutlet var gameView: GameView!
     
     @IBAction func gameOver(_ sender: UIButton) {
-        let rec = RecordsCaretaker()
         let lastResult = Record(date: gameSession.date, score: gameSession.score, correctAnswers: gameSession.correctAnswers, questionCount: gameSession.questionCount, hints: "0 / 3")
-        rec.save(records: [lastResult])
+        rec.saveRecord(records: [lastResult])
     }
 
-    @IBOutlet weak var questionLabel: UILabel!
-    @IBOutlet var buttons: [UIButton]!
     @IBAction func isPressedButton(_ sender: UIButton) {
-        isTapped(button: sender)
-        saveData(round: self.round)
+        checkAnswer(answer: sender.titleLabel!.text!)
+        sendData(score: score, answersCount: correctAnswersCount)
+        gameView.configure(question: question, questionTitle: questionTitle, answers: answers, score: score, isGameOver: isGameOver)
     }
-    @IBOutlet weak var scoreLabel: UILabel!
-    @IBOutlet weak var roundLabel: UILabel!
-    @IBOutlet weak var gameOverButton: UIButton!
     
-    let prize = [0, 100, 200, 300, 500, 1_000, 2_000, 4_000, 8_000, 16_000, 32_000, 64_000, 125_000, 250_000, 500_000, 1_000_000]
-    let questions = QuestionsBase()
-    let gameSession = GameSession()
-    var keyQuestion = String()
-    var roundQuestions = [String:[String]]()
-    let charArray = ["A: ",  "B: ", "C: ", "D: "]
-    
-    var round = 1
-    
+    let rec = RecordsCaretaker()
+    let questionBase = QuestionsBase()
+    var delegate: DataDelegate?
+    var gameSession = GameSession()
+    var gameMode: GameMode = Game.instance.gameMode
+    private var gameModeStrategy: GameModeStrategy {
+        switch self.gameMode {
+            case .standart:
+            return StandartGameModeStrategy()
+            case .random:
+            return RandomGameModeStrategy()
+        }
+    }
+    var question = String()
+    var correctAnswer = String()
+    var answers = [String]()
+    var questionTitle = String()
+    var round = Observable<Int>(1)
+    var isGameOver = false
+    var score = Int()
+    var correctAnswersCount = 0
+    var questionsQueue = [Int]()
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+      
         gameSession.delegate = self
-        
-        let game = Game.instance
-        game.result = gameSession
-        
-        gameOverButton.isHidden = true
-        gameOverButton.setTitle("Выход", for: .normal)
-        setQuestion()
-        
+        Game.instance.result = GameSession()
+        let settingsRec = SettingsCaretaker()
+        if !settingsRec.loadSettings().isEmpty {
+            Game.instance.gameMode = settingsRec.loadSettings()[0].gameMode
+        }
+        questionsQueue = gameModeStrategy.questionsQueue()
+        setRound()
+        gameView.configure(question: question, questionTitle: questionTitle, answers: answers, score: score, isGameOver: isGameOver)
     }
-
-    // не работает
-    override func viewWillLayoutSubviews() {
-        
-        buttons.forEach { button in
-           button.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
-           button.titleLabel?.textAlignment = .left
-           button.titleLabel?.numberOfLines = 0
+    
+    func checkAnswer(answer: String){
+        sleep(1)
+        if answer.contains(correctAnswer) {
+            correctAnswersCount += 1
+            if round.value < 15 {
+                round.value += 1
+                setRound()
+            } else {
+                score = questionBase.prize[round.value]
+                questionTitle = "Вы стали миллионером!"
+                answers = ["","","",""]
+                question = "Верных ответов: \(round.value) из 15\nВаш выигрыш: \(questionBase.prize[round.value]) рублей"
+                isGameOver = true
+            }
+        } else {
+            questionTitle = "Вы проиграли!"
+            question = "Верных ответов: \(round.value - 1) из 15\nВаш выигрыш: \(questionBase.prize[round.value - 1]) рублей"
+            isGameOver = true
         }
     }
     
-    func setQuestion(){
-        roundQuestions = questions.setThePullOfQuestions(round: round)
-        let round = roundQuestions.enumerated()
-        for (index, element) in round {
-            roundLabel.text = "Вопрос \(self.round):"
-            scoreLabel.text = "счет: " + String(prize[self.round - 1])
+    func setRound(){
+        let roundQuestions = questionBase.setThePullOfQuestions(round: questionsQueue[round.value-1])
+        for (index, element) in roundQuestions.enumerated() {
+            score = questionBase.prize[round.value - 1]
             if index == 0 {
-                questionLabel.text = element.key
-                keyQuestion = element.key
-                let answersArray = element.value.shuffled()
-                for i in 0..<buttons.count {
-                    let button = buttons[i] as UIButton
-                    button.backgroundColor = .white
-                    button.setTitle(charArray[i] + answersArray[i], for: .normal)
-                }
+                questionTitle = "Вопрос \(round.value):"
+                question = element.key
+                correctAnswer = element.value[0]
+                answers = element.value.shuffled()
             }
         }
     }
     
-    func isTapped(button: UIButton){
-        let answers = roundQuestions[keyQuestion]
-        for i in 0..<buttons.count {
-            if button == buttons[i] {
-                if button.titleLabel?.text == charArray[i] + (answers?[0] ?? "") {
-                    sleep(1)
-                    round += 1
-                    if round <= 15 {
-                        setQuestion()
-                    } else {
-                        roundLabel.text = "Вы стали миллионером!"
-                        questionLabel.text = "Верных ответов: \(round - 1) из 15\nВаш выигрыш: \(self.prize[round - 1]) рублей"
-                        gameOverButton.isHidden = false
-                        gameOver(gameOverButton)
-                        for i in 0..<buttons.count {
-                            let button = buttons[i] as UIButton
-                            button.setTitle("", for: .normal)
-                            button.isEnabled = false
-                        }
-                    }
-                } else {
-                    sleep(1)
-                    button.backgroundColor = .red
-                    roundLabel.text = "Вы проиграли!"
-                    questionLabel.text = "Верных ответов: \(round - 1) из 15\nВаш выигрыш: \(self.prize[round - 1]) рублей"
-                    gameOverButton.isHidden = false
-                    gameOver(gameOverButton)
-                    for i in 0..<buttons.count {
-                        let button = buttons[i] as UIButton
-                        button.isEnabled = false
-                    }
-                }
-            }
-        }
-    }
-}
-
-extension GameViewController: GameSessionDelegate {
-    
-    func saveData(round: Int) {
+    func sendData(score: Int, answersCount: Int) {
         gameSession.date = Date()
-        gameSession.score = prize[round - 1]
-        gameSession.correctAnswers = round - 1
-        gameSession.questionCount = round
+        gameSession.score = score
+        gameSession.correctAnswers = answersCount
+        gameSession.questionCount = round.value
     }
 }
-

@@ -8,20 +8,27 @@
 
 import Foundation
 
-protocol GameSessionDelegate: class  {
-    func saveData(round: Int)
-}
-
 class GameSession {
     
-    weak var delegate: GameSessionDelegate?
-    
-    var date = Date()
-    var score = Int()
-    var correctAnswers = Int()
-    var questionCount = Int()
-
-    func saveData(round: Int){
-        self.delegate?.saveData(round: round)
+    func sendData(score: Int, answersCount: Int) { // не вызывается
+        delegate?.sendData(score: score, answersCount: answersCount)
     }
+    
+    weak var delegate: DataDelegate?
+    
+    var date: Date = Date()
+    var score: Int = 0
+    var correctAnswers: Int = 0
+    var questionCount: Int = 0
+    
+    private enum CodindKeys: CodingKey { //Codable не работает из-за делегата
+        case date
+        case score
+        case correctAnswers
+        case questionCount
+    }
+}
+
+protocol DataDelegate: class {
+    func sendData(score: Int, answersCount: Int)
 }

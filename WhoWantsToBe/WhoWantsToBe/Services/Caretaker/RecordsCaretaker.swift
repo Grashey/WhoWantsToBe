@@ -13,21 +13,21 @@ final class RecordsCaretaker {
     private let encoder = JSONEncoder()
     private let decoder = JSONDecoder()
     
-    private let key = "records"
+    private let recordsKey = "records"
     
-    func save(records: [Record]) {
+    func saveRecord(records: [Record]) {
         let allRecords = retrieveRecords()
         let newRecords = allRecords + records
         do {
             let data = try self.encoder.encode(newRecords)
-            UserDefaults.standard.set(data, forKey: key)
+            UserDefaults.standard.set(data, forKey: recordsKey)
         } catch {
             print(error)
         }
     }
     
     func retrieveRecords() -> [Record] {
-        guard let data = UserDefaults.standard.data(forKey: key) else {
+        guard let data = UserDefaults.standard.data(forKey: recordsKey) else {
             return []
         }
         do {
@@ -38,9 +38,7 @@ final class RecordsCaretaker {
         }
     }
     func clearRecords() {
-        guard var data = UserDefaults.standard.data(forKey: key) else { return }
-        data.removeAll()
-        UserDefaults.standard.set(data, forKey: key)
+        UserDefaults.standard.removeObject(forKey: recordsKey)
     }
 }
 
@@ -52,4 +50,3 @@ struct Record: Codable {
     var questionCount: Int
     var hints: String
 }
-
